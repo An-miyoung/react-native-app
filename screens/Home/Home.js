@@ -1,13 +1,18 @@
 import React from 'react';
-import {SafeAreaView, View} from 'react-native';
+import {Pressable, SafeAreaView, Text, View} from 'react-native';
 
 import globalStyle from '../../assets/styles/globalStyle';
 import style from './style';
 import Search from '../../components/SearchInput/Search';
 import SingleDonationItem from '../../components/SingleDonationItem/SingleDonationItem';
 import {horizontalScale} from '../../assets/styles/scaling';
+import {useDispatch, useSelector} from 'react-redux';
+import Header from '../../components/Header/Header';
+import {updateFirstName} from '../../redux/reducers/User';
 
 const Home = () => {
+  const user = useSelector(state => state.user);
+  const dispatch = useDispatch();
   return (
     <SafeAreaView style={[globalStyle.backgroundWhite, globalStyle.flex]}>
       <Search
@@ -15,7 +20,7 @@ const Home = () => {
           console.log(value);
         }}
       />
-      <View
+      {/* <View
         style={{
           flexDirection: 'row',
           justifyContent: 'space-between',
@@ -37,6 +42,13 @@ const Home = () => {
           donationTitle={'Tree Cactus'}
           price={44}
         />
+      </View> */}
+      <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
+        <Header title={user.firstName} />
+        <Pressable
+          onPress={() => dispatch(updateFirstName({firstName: 'MiYoung'}))}>
+          <Text>이름바꾸기</Text>
+        </Pressable>
       </View>
     </SafeAreaView>
   );
