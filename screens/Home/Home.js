@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import {
   Image,
   Pressable,
@@ -8,19 +9,18 @@ import {
   ScrollView,
   FlatList,
 } from 'react-native';
+import {Routes} from '../../navigation/Routes';
+import {updateSelectedCategoriesId} from '../../redux/reducers/Categories';
+import {updateSelectedDonationId} from '../../redux/reducers/Donation';
+import Search from '../../components/SearchInput/Search';
+import SingleDonationItem from '../../components/SingleDonationItem/SingleDonationItem';
+import Header from '../../components/Header/Header';
+import Tab from '../../components/Tab/Tab';
 
 import globalStyle from '../../assets/styles/globalStyle';
 import style from './style';
-import Search from '../../components/SearchInput/Search';
-import SingleDonationItem from '../../components/SingleDonationItem/SingleDonationItem';
-import {horizontalScale} from '../../assets/styles/scaling';
-import {useDispatch, useSelector} from 'react-redux';
-import Header from '../../components/Header/Header';
-import {updateFirstName} from '../../redux/reducers/User';
-import Tab from '../../components/Tab/Tab';
-import {updateSelectedCategoriesId} from '../../redux/reducers/Categories';
 
-const Home = () => {
+const Home = ({navigation}) => {
   const user = useSelector(state => state.user);
   const categories = useSelector(state => state.categories);
   const donations = useSelector(state => state.donations);
@@ -128,25 +128,32 @@ const Home = () => {
         </View>
         {donationItems.length > 0 && (
           <View style={style.donationItemsContainer}>
-            {donationItems.map(item => (
-              <View
-                key={`donation_${item.donationItemId}`}
-                style={style.singleDonationItem}>
-                <SingleDonationItem
-                  uri={item.image}
-                  badgeTitle={
-                    categories.categories.filter(
-                      category =>
-                        category.categoryId === categories.selectedCategoriesId,
-                    )[0].name
-                  }
-                  donationTitle={item.name}
-                  price={parseFloat(item.price)}
-                  donationItemId={item.donationItemId}
-                  onPress={selectedDonationId => {}}
-                />
-              </View>
-            ))}
+            {donationItems.map(item => {
+              const categoryInformation = categories.categories.find(
+                category =>
+                  category.categoryId === categories.selectedCategoriesId,
+              );
+
+              return (
+                <View
+                  key={`donation_${item.donationItemId}`}
+                  style={style.singleDonationItem}>
+                  <SingleDonationItem
+                    uri={item.image}
+                    badgeTitle={categoryInformation.name}
+                    donationTitle={item.name}
+                    price={parseFloat(item.price)}
+                    donationItemId={item.donationItemId}
+                    onPress={selectedDonationId => {
+                      dispatch(updateSelectedDonationId(selectedDonationId));
+                      navigation.navigate(Routes.SingleDonationItem, {
+                        categoryInformation,
+                      });
+                    }}
+                  />
+                </View>
+              );
+            })}
           </View>
         )}
       </ScrollView>
