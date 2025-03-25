@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image, View} from 'react-native';
+import {Image, Pressable, View} from 'react-native';
 import PropTypes from 'prop-types';
 
 import style from './style';
@@ -8,19 +8,27 @@ import Header from '../Header/Header';
 
 const SingleDonationItem = props => {
   return (
-    <View>
+    <Pressable
+      onPress={() => {
+        props.onPress(props.donationItemId);
+      }}>
       <View>
         <View style={style.badge}>
           <Badge title={props.badgeTitle} />
         </View>
         <Image
-          resizeMode="contain"
+          resizeMode="cover"
           source={{uri: props.uri}}
           style={style.image}
         />
       </View>
       <View style={style.donationInformation}>
-        <Header title={props.donationTitle} type={3} color={'#0a043c'} />
+        <Header
+          title={props.donationTitle}
+          type={3}
+          color={'#0a043c'}
+          numberOfLines={1}
+        />
         <View style={style.price}>
           <Header
             title={`$${props.price.toFixed(2)}`}
@@ -29,8 +37,12 @@ const SingleDonationItem = props => {
           />
         </View>
       </View>
-    </View>
+    </Pressable>
   );
+};
+
+SingleDonationItem.defaultProps = {
+  onPress: () => {},
 };
 
 SingleDonationItem.PropTypes = {
@@ -38,6 +50,8 @@ SingleDonationItem.PropTypes = {
   badgeTitle: PropTypes.string.isRequired,
   donationTitle: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
+  donationItemId: PropTypes.number.isRequired,
+  onPress: PropTypes.func,
 };
 
 export default SingleDonationItem;

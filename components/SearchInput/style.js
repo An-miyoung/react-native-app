@@ -13,7 +13,6 @@ const style = StyleSheet.create({
     backgroundColor: '#f3f5f9',
     height: verticalScale(50),
     borderRadius: horizontalScale(50),
-    marginLeft: horizontalScale(24),
   },
   searchInput: {
     flex: 1,
