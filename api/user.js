@@ -1,4 +1,6 @@
 import auth from '@react-native-firebase/auth';
+import store from '../redux/store';
+import {updateToken} from '../redux/reducers/User';
 
 export const createUser = async (fullName, email, password) => {
   try {
@@ -38,5 +40,20 @@ export const loginUser = async (email, password) => {
       };
     }
     return {status: false, error: 'Somthing went wrong!'};
+  }
+};
+
+export const logOutUser = async () => {
+  await auth().signOut();
+};
+
+export const checkToken = async () => {
+  try {
+    // 강제로 토큰을 리프레쉬하려면 getIdToken() 에 true 를 넣는다
+    let response = await auth().currentUser.getIdToken(true);
+    store.dispatch(updateToken(response));
+    return response;
+  } catch (error) {
+    return error;
   }
 };

@@ -19,6 +19,8 @@ import Tab from '../../components/Tab/Tab';
 
 import globalStyle from '../../assets/styles/globalStyle';
 import style from './style';
+import {resetToInitialState} from '../../redux/reducers/User';
+import {logOutUser} from '../../api/user';
 
 const Home = ({navigation}) => {
   const user = useSelector(state => state.user);
@@ -38,6 +40,11 @@ const Home = ({navigation}) => {
     if (startIndex >= items.length) return [];
 
     return items.slice(startIndex, endIndex);
+  };
+
+  const handleLogOut = async () => {
+    dispatch(resetToInitialState());
+    await logOutUser();
   };
 
   useEffect(() => {
@@ -67,11 +74,19 @@ const Home = ({navigation}) => {
               <Header title={`${user.displayName} 👋`} />
             </View>
           </View>
-          <Image
-            resizeMode="contain"
-            source={{uri: user.profileImage}}
-            style={style.profileImage}
-          />
+          <View>
+            <Image
+              resizeMode="contain"
+              source={{uri: user.profileImage}}
+              style={style.profileImage}
+            />
+            <Pressable
+              onPress={() => {
+                handleLogOut();
+              }}>
+              <Header type={3} title={'Logout'} color={'#156cf7'} />
+            </Pressable>
+          </View>
         </View>
         <View style={style.searchBox}>
           <Search

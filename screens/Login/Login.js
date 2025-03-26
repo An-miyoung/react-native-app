@@ -25,7 +25,6 @@ const Login = ({navigation}) => {
     } else if (user.status && user.data.token) {
       setError('');
       dispatch(logIn(user.data));
-      navigation.navigate(Routes.Home);
     }
   };
 

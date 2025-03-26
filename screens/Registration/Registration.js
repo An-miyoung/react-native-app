@@ -25,7 +25,7 @@ const Registration = ({navigation}) => {
       setSuccess('You have successfully registered.');
       setTimeout(() => {
         navigation.goBack();
-      }, 2000);
+      }, 1000);
     }
   };
 
