@@ -8,7 +8,7 @@ PODS:
     - FirebaseAuth (~> 11.10.0)
   - Firebase/CoreOnly (11.10.0):
     - FirebaseCore (~> 11.10.0)
-  - FirebaseAppCheckInterop (11.10.0)
+  - FirebaseAppCheckInterop (11.11.0)
   - FirebaseAuth (11.10.0):
     - FirebaseAppCheckInterop (~> 11.0)
     - FirebaseAuthInterop (~> 11.0)
@@ -18,7 +18,7 @@ PODS:
     - GoogleUtilities/Environment (~> 8.0)
     - GTMSessionFetcher/Core (< 5.0, >= 3.4)
     - RecaptchaInterop (~> 101.0)
-  - FirebaseAuthInterop (11.10.0)
+  - FirebaseAuthInterop (11.11.0)
   - FirebaseCore (11.10.0):
     - FirebaseCoreInternal (~> 11.10.0)
     - GoogleUtilities/Environment (~> 8.0)
@@ -1800,6 +1800,42 @@ PODS:
     - ReactCommon/turbomodule/core
     - Yoga
   - SocketRocket (0.7.1)
+  - Stripe (24.7.0):
+    - StripeApplePay (= 24.7.0)
+    - StripeCore (= 24.7.0)
+    - StripePayments (= 24.7.0)
+    - StripePaymentsUI (= 24.7.0)
+    - StripeUICore (= 24.7.0)
+  - stripe-react-native (0.43.0):
+    - React-Core
+    - Stripe (~> 24.7.0)
+    - StripeApplePay (~> 24.7.0)
+    - StripeFinancialConnections (~> 24.7.0)
+    - StripePayments (~> 24.7.0)
+    - StripePaymentSheet (~> 24.7.0)
+    - StripePaymentsUI (~> 24.7.0)
+  - StripeApplePay (24.7.0):
+    - StripeCore (= 24.7.0)
+  - StripeCore (24.7.0)
+  - StripeFinancialConnections (24.7.0):
+    - StripeCore (= 24.7.0)
+    - StripeUICore (= 24.7.0)
+  - StripePayments (24.7.0):
+    - StripeCore (= 24.7.0)
+    - StripePayments/Stripe3DS2 (= 24.7.0)
+  - StripePayments/Stripe3DS2 (24.7.0):
+    - StripeCore (= 24.7.0)
+  - StripePaymentSheet (24.7.0):
+    - StripeApplePay (= 24.7.0)
+    - StripeCore (= 24.7.0)
+    - StripePayments (= 24.7.0)
+    - StripePaymentsUI (= 24.7.0)
+  - StripePaymentsUI (24.7.0):
+    - StripeCore (= 24.7.0)
+    - StripePayments (= 24.7.0)
+    - StripeUICore (= 24.7.0)
+  - StripeUICore (24.7.0):
+    - StripeCore (= 24.7.0)
   - Yoga (0.0.0)
 
 DEPENDENCIES:
@@ -1879,6 +1915,7 @@ DEPENDENCIES:
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNSVG (from `../node_modules/react-native-svg`)
+  - "stripe-react-native (from `../node_modules/@stripe/stripe-react-native`)"
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -1894,6 +1931,14 @@ SPEC REPOS:
     - GTMSessionFetcher
     - RecaptchaInterop
     - SocketRocket
+    - Stripe
+    - StripeApplePay
+    - StripeCore
+    - StripeFinancialConnections
+    - StripePayments
+    - StripePaymentSheet
+    - StripePaymentsUI
+    - StripeUICore
 
 EXTERNAL SOURCES:
   boost:
@@ -2045,6 +2090,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-screens"
   RNSVG:
     :path: "../node_modules/react-native-svg"
+  stripe-react-native:
+    :path: "../node_modules/@stripe/stripe-react-native"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -2054,9 +2101,9 @@ SPEC CHECKSUMS:
   fast_float: 06eeec4fe712a76acc9376682e4808b05ce978b6
   FBLazyVector: bba368dacede4c9dec7a58c9be5a2d3e9ea30cc7
   Firebase: 1fe1c0a7d9aaea32efe01fbea5f0ebd8d70e53a2
-  FirebaseAppCheckInterop: 9664c858489710f682766ef54e2b6741d3b62070
+  FirebaseAppCheckInterop: f23709c9ce92d810aa53ff4ce12ad3e666a3c7be
   FirebaseAuth: c4146bdfdc87329f9962babd24dae89373f49a32
-  FirebaseAuthInterop: 01a804fb074424fd58b92dd50dd0272277199356
+  FirebaseAuthInterop: ac22ed402c2f4e3a8c63ebd3278af9a06073c1be
   FirebaseCore: 8344daef5e2661eb004b177488d6f9f0f24251b7
   FirebaseCoreExtension: 6f357679327f3614e995dc7cf3f2d600bdc774ac
   FirebaseCoreInternal: ef4505d2afb1d0ebbc33162cb3795382904b5679
@@ -2065,7 +2112,7 @@ SPEC CHECKSUMS:
   GoogleUtilities: 26a3abef001b6533cf678d3eb38fd3f614b7872d
   GTMSessionFetcher: 75b671f9e551e4c49153d4c4f8659ef4f559b970
   hermes-engine: f493b0a600aed5dc06532141603688a30a5b2f61
-  RCT-Folly: 36fe2295e44b10d831836cc0d1daec5f8abcf809
+  RCT-Folly: e78785aa9ba2ed998ea4151e314036f6c49e6d82
   RCTDeprecation: 082fbc90409015eac1366795a0b90f8b5cb28efe
   RCTRequired: ca966f4da75b62ce3ea8c538d82cb5ecbb06f12a
   RCTTypeSafety: 2f0bc11f9584fde4c7e6d8b26577c97681051c00
@@ -2134,6 +2181,15 @@ SPEC CHECKSUMS:
   RNScreens: 2e4870e8f9cb4a77e5a51530729f2762868316df
   RNSVG: 71e35e78add645b84b52b0c6f203f91028e1ab5e
   SocketRocket: d4aabe649be1e368d1318fdf28a022d714d65748
+  Stripe: 8a03a78bfa16b197f9fac51e42670ac563b34388
+  stripe-react-native: 7f3678a9a3540ff8239e742d4d718646425ca920
+  StripeApplePay: 3c1b43d9b5130f6b714863bf8c9482c24168ab27
+  StripeCore: 4955c2af14446db04818ad043d19d8f97b73c5fa
+  StripeFinancialConnections: 8cf97b04c2f354879a2a5473126efac38f11f406
+  StripePayments: 91820845bece6117809bcfdcaef39c84c2b4cae5
+  StripePaymentSheet: 1810187cbdbc73410b8fb86cecafaaa41c1481fc
+  StripePaymentsUI: 326376e23caa369d1f58041bdb858c89c2b17ed4
+  StripeUICore: 17a4f3adb81ae05ab885e1b353022a430176eab1
   Yoga: 464c847c822847c88560af530ca15273b8e45261
 
 PODFILE CHECKSUM: db5ac92b2b208399652836d0a27677e64f71984b
