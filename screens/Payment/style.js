@@ -11,6 +11,10 @@ const style = StyleSheet.create({
   button: {
     marginHorizontal: horizontalScale(24),
   },
+  cardForm: {
+    height: verticalScale(200),
+    marginTop: verticalScale(12),
+  },
 });
 
 export default style;
